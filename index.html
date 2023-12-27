@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solana Wallet Address</title>
+    <title>Random Solana-Like Addresses</title>
     <style>
         body {
             display: flex;
@@ -22,21 +22,32 @@
 </head>
 <body>
     <button id="copy-button">Copy</button>
-    <p id="current-address">Solana Wallet Address: JCA4GsnNPu27iNrSb4LU7XVe5bgcZqTWEu2ydeDMKHyd</p>
+    <p id="current-address">Solana-Like Wallet Address:</p>
 
     <script>
         const copyButton = document.getElementById('copy-button');
+        const currentAddress = document.getElementById('current-address');
+
+        // Function to generate a random string in the Solana address format
+        function generateRandomSolanaLikeAddress() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let address = '';
+            for (let i = 0; i < 44; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                address += characters.charAt(randomIndex);
+            }
+            return address;
+        }
 
         copyButton.addEventListener('click', () => {
-            const addressToCopy = 'JCA4GsnNPu27iNrSb4LU7XVe5bgcZqTWEu2ydeDMKHyd';
+            const generatedAddress = generateRandomSolanaLikeAddress();
 
-            // Display the current address below the button
-            const currentAddress = document.getElementById('current-address');
-            currentAddress.textContent = 'Solana Wallet Address: ' + addressToCopy;
+            // Display the generated address below the button
+            currentAddress.textContent = 'Solana-Like Wallet Address: ' + generatedAddress;
 
             // Create a text area to hold the address temporarily
             const textArea = document.createElement('textarea');
-            textArea.value = addressToCopy;
+            textArea.value = generatedAddress;
             document.body.appendChild(textArea);
 
             // Select the text in the text area and copy it to the clipboard
@@ -46,7 +57,6 @@
             // Remove the temporary text area
             document.body.removeChild(textArea);
 
-            // Provide some feedback to the user
         });
     </script>
 </body>
