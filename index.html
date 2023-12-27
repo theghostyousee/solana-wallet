@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solana Address Generator</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #copy-button {
+            font-size: 24px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button id="copy-button">Copy</button>
+    <p id="current-address"></p>
+
+    <script>
+        // Function to generate a random Solana address (for demonstration purposes)
+        function generateRandomSolanaAddress() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let address = '';
+            for (let i = 0; i < 64; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                address += characters.charAt(randomIndex);
+            }
+            return address;
+        }
+
+        const copyButton = document.getElementById('copy-button');
+        const currentAddress = document.getElementById('current-address');
+
+        copyButton.addEventListener('click', () => {
+            const generatedAddress = generateRandomSolanaAddress();
+            
+            // Display the current address below the button
+            currentAddress.textContent = 'Current Address: ' + generatedAddress;
+
+            // Create a text area to hold the address temporarily
+            const textArea = document.createElement('textarea');
+            textArea.value = generatedAddress;
+            document.body.appendChild(textArea);
+
+            // Select the text in the text area and copy it to the clipboard
+            textArea.select();
+            document.execCommand('copy');
+
+            // Remove the temporary text area
+            document.body.removeChild(textArea);
+
+            // Provide some feedback to the user
+        });
+    </script>
+</body>
+</html>
