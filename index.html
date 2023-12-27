@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solana Address Generator</title>
+    <title>Solana Wallet Address</title>
     <style>
         body {
             display: flex;
@@ -22,32 +22,21 @@
 </head>
 <body>
     <button id="copy-button">Copy</button>
-    <p id="current-address"></p>
+    <p id="current-address">Solana Wallet Address: JCA4GsnNPu27iNrSb4LU7XVe5bgcZqTWEu2ydeDMKHyd</p>
 
     <script>
-        // Function to generate a random Solana address (for demonstration purposes)
-        function generateRandomSolanaAddress() {
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            let address = '';
-            for (let i = 0; i < 64; i++) {
-                const randomIndex = Math.floor(Math.random() * characters.length);
-                address += characters.charAt(randomIndex);
-            }
-            return address;
-        }
-
         const copyButton = document.getElementById('copy-button');
-        const currentAddress = document.getElementById('current-address');
 
         copyButton.addEventListener('click', () => {
-            const generatedAddress = generateRandomSolanaAddress();
-            
+            const addressToCopy = 'JCA4GsnNPu27iNrSb4LU7XVe5bgcZqTWEu2ydeDMKHyd';
+
             // Display the current address below the button
-            currentAddress.textContent = 'Current Address: ' + generatedAddress;
+            const currentAddress = document.getElementById('current-address');
+            currentAddress.textContent = 'Solana Wallet Address: ' + addressToCopy;
 
             // Create a text area to hold the address temporarily
             const textArea = document.createElement('textarea');
-            textArea.value = generatedAddress;
+            textArea.value = addressToCopy;
             document.body.appendChild(textArea);
 
             // Select the text in the text area and copy it to the clipboard
